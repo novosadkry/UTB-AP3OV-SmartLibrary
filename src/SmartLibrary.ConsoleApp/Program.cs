@@ -1,4 +1,4 @@
-﻿namespace SmartLibrary
+﻿namespace SmartLibrary.ConsoleApp
 {
     public static class Program
     {
