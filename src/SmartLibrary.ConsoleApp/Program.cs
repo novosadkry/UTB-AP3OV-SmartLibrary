@@ -1,10 +1,42 @@
-﻿namespace SmartLibrary.ConsoleApp
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using SmartLibrary.Domain.Interfaces;
+using SmartLibrary.Infrastructure.Data;
+using SmartLibrary.Infrastructure.Services;
+using SmartLibrary.Infrastructure.Repositories;
+
+namespace SmartLibrary.ConsoleApp
 {
     public static class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            var services = ConfigureServices();
+            var serviceProvider = services.BuildServiceProvider();
+
+            await RunAsync(serviceProvider);
+        }
+
+        private static IServiceCollection ConfigureServices()
+        {
+            IServiceCollection services = new ServiceCollection();
+
+            services.AddDbContext<LibraryDbContext>(options =>
+                options.UseSqlite("Data Source=Library.db"));
+
+            services.AddScoped<IBookRepository, BookRepository>();
+            services.AddScoped<ILibraryService, LibraryService>();
+
+            return services;
+        }
+
+        private static async Task RunAsync(IServiceProvider serviceProvider)
+        {
+            using var scope = serviceProvider.CreateScope();
+            var libraryService = scope.ServiceProvider.GetRequiredService<ILibraryService>();
+
+            var book = await libraryService.GetBookByIdAsync(1);
+            Console.WriteLine($"Book: {book.Title} by {book.Author}");
         }
     }
 }
