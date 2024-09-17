@@ -1,4 +1,4 @@
-﻿namespace SmartLibrary.Domain.Models
+﻿namespace SmartLibrary.Core.Models
 {
     public class Reader
     {

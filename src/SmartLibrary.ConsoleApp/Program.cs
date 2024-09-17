@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using SmartLibrary.Domain.Interfaces;
-using SmartLibrary.Infrastructure.Data;
-using SmartLibrary.Infrastructure.Services;
-using SmartLibrary.Infrastructure.Repositories;
+using SmartLibrary.Core.Data;
+using SmartLibrary.Core.Interfaces;
+using SmartLibrary.Core.Services;
+using SmartLibrary.Core.Repositories;
 
 namespace SmartLibrary.ConsoleApp
 {

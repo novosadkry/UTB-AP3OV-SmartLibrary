@@ -1,6 +1,6 @@
-﻿using SmartLibrary.Domain.Models;
+﻿using SmartLibrary.Core.Models;
 
-namespace SmartLibrary.Domain.Interfaces
+namespace SmartLibrary.Core.Interfaces
 {
     public interface INotificationService
     {
