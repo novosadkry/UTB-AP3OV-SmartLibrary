@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using SmartLibrary.Core.Data;
 using SmartLibrary.Core.Interfaces;
@@ -11,37 +13,27 @@ namespace SmartLibrary.ConsoleApp
     {
         public static async Task Main(string[] args)
         {
-            var services = ConfigureServices();
-            var serviceProvider = services.BuildServiceProvider();
+            var builder = Host.CreateApplicationBuilder(args);
 
-            await RunAsync(serviceProvider);
-        }
+            builder.Logging.ClearProviders();
 
-        private static IServiceCollection ConfigureServices()
-        {
-            IServiceCollection services = new ServiceCollection();
+            builder.Services.AddDbContext<LibraryDbContext>(options =>
+                options.UseSqlite(
+                    "Data Source=Library.db",
+                    sqlite => sqlite.MigrationsAssembly("SmartLibrary.Core")));
 
-            services.AddDbContext<LibraryDbContext>(options =>
-                options.UseSqlite("Data Source=Library.db"));
+            builder.Services
+                .AddScoped<IBookRepository, BookRepository>()
+                .AddScoped<IReaderRepository, ReaderRepository>()
+                .AddScoped<ILoanRepository, LoanRepository>()
+                .AddScoped<ILibraryService, LibraryService>()
+                .AddScoped<INotificationService, NotificationService>();
 
-            services.AddScoped<IBookRepository, BookRepository>();
-            services.AddScoped<IReaderRepository, ReaderRepository>();
-            services.AddScoped<ILoanRepository, LoanRepository>();
-            services.AddScoped<ILibraryService, LibraryService>();
+            builder.Services.AddScoped<NotificationLogger>();
 
-            return services;
-        }
+            var host = builder.Build();
 
-        private static async Task RunAsync(IServiceProvider serviceProvider)
-        {
-            using var scope = serviceProvider.CreateScope();
-            var libraryService = scope.ServiceProvider.GetRequiredService<ILibraryService>();
-
-            var book = await libraryService.GetBookByIdAsync(1);
-            if (book != null)
-            {
-                Console.WriteLine($"Book: {book.Title} by {book.Author}");
-            }
+            await host.RunAsync();
         }
     }
 }
