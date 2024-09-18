@@ -2,12 +2,8 @@
 
 namespace SmartLibrary.Core.Interfaces
 {
-    public interface ILoanRepository
+    public interface ILoanRepository : IRepositoryBase<Loan>
     {
-        Task<Loan> GetByIdAsync(int id);
-        Task AddAsync(Loan loan);
-        Task UpdateAsync(Loan loan);
-        Task<IEnumerable<Loan>> GetAllAsync();
         Task<IEnumerable<Loan>> GetOverdueLoansAsync();
     }
 }

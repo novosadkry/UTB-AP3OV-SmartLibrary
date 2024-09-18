@@ -5,20 +5,21 @@ using SmartLibrary.Core.Interfaces;
 
 namespace SmartLibrary.Core.Repositories
 {
-    public class BookRepository : RepositoryBase<Book>, IBookRepository
+    public class LoanRepository : RepositoryBase<Loan>, ILoanRepository
     {
         private readonly LibraryDbContext _dbContext;
 
-        private BookRepository(LibraryDbContext dbContext)
+        public LoanRepository(LibraryDbContext dbContext)
             : base(dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public async Task<Book?> GetByIsbnAsync(string isbn)
+        public async Task<IEnumerable<Loan>> GetOverdueLoansAsync()
         {
-            return await _dbContext.Books
-                .FirstAsync(book => book.Isbn == isbn);
+            return await _dbContext.Loans
+                .Where(loan => loan.IsOverdue)
+                .ToListAsync();
         }
     }
 }

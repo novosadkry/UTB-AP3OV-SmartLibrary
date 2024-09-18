@@ -49,12 +49,12 @@ namespace SmartLibrary.Core.Services
             }
         }
 
-        public async Task<Book> GetBookByIdAsync(int id)
+        public async Task<Book?> GetBookByIdAsync(int id)
         {
             return await _bookRepository.GetByIdAsync(id);
         }
 
-        public async Task<Book> GetBookByIsbnAsync(string isbn)
+        public async Task<Book?> GetBookByIsbnAsync(string isbn)
         {
             return await _bookRepository.GetByIsbnAsync(isbn);
         }
