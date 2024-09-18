@@ -40,13 +40,13 @@ namespace SmartLibrary.Core.Services
 
         public async Task ReturnBookAsync(Loan loan)
         {
-            loan.ReturnDate = DateTime.Now;
-            await _loanRepository.UpdateAsync(loan);
-
             if (loan.IsOverdue)
             {
                 await _notificationService.NotifyOverdueBookReturnedAsync(loan);
             }
+
+            loan.ReturnDate = DateTime.Now;
+            await _loanRepository.UpdateAsync(loan);
         }
 
         public async Task<Book?> GetBookByIdAsync(int id)
