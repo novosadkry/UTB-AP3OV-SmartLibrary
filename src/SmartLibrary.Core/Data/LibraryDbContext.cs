@@ -3,7 +3,7 @@ using SmartLibrary.Core.Models;
 
 namespace SmartLibrary.Core.Data
 {
-    public class LibraryDbContext : DbContext
+    public class LibraryDbContext(DbContextOptions<LibraryDbContext> options) : DbContext(options)
     {
         public DbSet<Book> Books { get; set; }
         public DbSet<Reader> Readers { get; set; }

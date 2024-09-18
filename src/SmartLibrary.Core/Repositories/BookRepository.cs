@@ -9,7 +9,7 @@ namespace SmartLibrary.Core.Repositories
     {
         private readonly LibraryDbContext _dbContext;
 
-        private BookRepository(LibraryDbContext dbContext)
+        public BookRepository(LibraryDbContext dbContext)
             : base(dbContext)
         {
             _dbContext = dbContext;
