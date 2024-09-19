@@ -1,5 +1,6 @@
 ﻿using SmartLibrary.Core.Events;
 using SmartLibrary.Core.Interfaces;
+using Spectre.Console;
 
 namespace SmartLibrary.ConsoleApp
 {
@@ -27,13 +28,13 @@ namespace SmartLibrary.ConsoleApp
             switch (value)
             {
                 case NewBookAddedEvent newBookEvent:
-                    Console.WriteLine($"New book added: {newBookEvent.Book.Title}");
+                    AnsiConsole.WriteLine($"New book added: {newBookEvent.Book.Title}");
                     break;
                 case BookBorrowedEvent borrowedEvent:
-                    Console.WriteLine($"{borrowedEvent.Reader.FullName} borrowed {borrowedEvent.Book.Title}");
+                    AnsiConsole.WriteLine($"{borrowedEvent.Reader.FullName} borrowed {borrowedEvent.Book.Title}");
                     break;
                 case OverdueBookReturnedEvent overdueEvent:
-                    Console.WriteLine($"Overdue book returned: {overdueEvent.Loan.Book.Title}");
+                    AnsiConsole.WriteLine($"Overdue book returned: {overdueEvent.Loan.Book.Title}");
                     break;
             }
         }

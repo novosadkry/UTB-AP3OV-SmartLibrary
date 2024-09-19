@@ -9,8 +9,8 @@
         public DateTime LoanDate { get; set; }
         public DateTime? ReturnDate { get; set; }
 
-        public Book Book { get; set; }
-        public Reader Reader { get; set; }
+        public virtual Book Book { get; set; }
+        public virtual Reader Reader { get; set; }
 
         public bool IsOverdue => ReturnDate == null && DateTime.Now > DueDate;
         public int DaysOverdue => IsOverdue ? (DateTime.Now - DueDate).Days : 0;

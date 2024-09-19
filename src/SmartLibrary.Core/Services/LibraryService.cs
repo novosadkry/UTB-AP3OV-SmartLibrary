@@ -75,6 +75,11 @@ namespace SmartLibrary.Core.Services
             await _bookRepository.DeleteAsync(book);
         }
 
+        public async Task<IEnumerable<Loan>> GetLoansAsync()
+        {
+            return await _loanRepository.GetAllAsync();
+        }
+
         public async Task<IEnumerable<Book>> GetBooksAsync()
         {
             return await _bookRepository.GetAllAsync();

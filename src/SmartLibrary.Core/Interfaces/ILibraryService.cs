@@ -11,6 +11,7 @@ namespace SmartLibrary.Core.Interfaces
         Task AddBookAsync(Book book);
         Task UpdateBookAsync(Book book);
         Task DeleteBookAsync(Book book);
+        Task<IEnumerable<Loan>> GetLoansAsync();
         Task<IEnumerable<Book>> GetBooksAsync();
     }
 }
