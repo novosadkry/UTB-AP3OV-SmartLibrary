@@ -12,7 +12,7 @@
         public virtual Book Book { get; set; }
         public virtual Reader Reader { get; set; }
 
-        public bool IsOverdue => ReturnDate == null && DateTime.Now > DueDate;
-        public int DaysOverdue => IsOverdue ? (DateTime.Now - DueDate).Days : 0;
+        public bool IsOverdue => ReturnDate == null && DateTime.Today > DueDate.Date;
+        public int DaysOverdue => IsOverdue ? (DateTime.Today - DueDate.Date).Days : 0;
     }
 }

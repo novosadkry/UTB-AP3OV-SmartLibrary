@@ -46,7 +46,7 @@ namespace SmartLibrary.Core.Data
                 .RuleFor(r => r.LastName, f => f.Name.LastName())
                 .RuleFor(r => r.Age, f => f.Random.Number(18, 70))
                 .RuleFor(r => r.Email, f => f.Internet.Email())
-                .RuleFor(r => r.BirthDate, f => f.Date.Past());
+                .RuleFor(r => r.BirthDate, f => f.Date.Past(50, DateTime.Now.AddYears(-18)));
 
             var readers = Enumerable.Range(1, count)
                 .Select(_ => faker.Generate())
@@ -64,7 +64,7 @@ namespace SmartLibrary.Core.Data
             var faker = new Faker<Loan>("cz")
                 .RuleFor(l => l.Id, _ => fakerIndex++)
                 .RuleFor(l => l.LoanDate, f => f.Date.Past())
-                .RuleFor(l => l.DueDate, f => f.Date.Recent())
+                .RuleFor(l => l.DueDate, f => f.Date.Recent(5))
                 .RuleFor(l => l.ReturnDate, f =>
                     f.PickRandom<DateTime?>(f.Date.Recent(), null))
                 .RuleFor(l => l.BookId, f => f.PickRandom<Book>(books).Id)
