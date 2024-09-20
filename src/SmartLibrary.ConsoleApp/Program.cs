@@ -1,10 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using SmartLibrary.Core.Data;
-using SmartLibrary.Core.Services;
-using SmartLibrary.ConsoleApp.Widgets;
 using SmartLibrary.Core.Interfaces;
-using SmartLibrary.Core.Repositories;
+using SmartLibrary.Core.Extensions;
+using SmartLibrary.ConsoleApp.Widgets;
 using Spectre.Console;
 
 namespace SmartLibrary.ConsoleApp
@@ -23,20 +22,7 @@ namespace SmartLibrary.ConsoleApp
         {
             IServiceCollection services = new ServiceCollection();
 
-            services.AddDbContext<LibraryDbContext>(options =>
-            {
-                options
-                    .UseLazyLoadingProxies()
-                    .UseSqlite("Data Source=Library.db");
-            });
-
-            services
-                .AddScoped<IBookRepository, BookRepository>()
-                .AddScoped<IReaderRepository, ReaderRepository>()
-                .AddScoped<ILoanRepository, LoanRepository>()
-                .AddScoped<ILibraryService, LibraryService>()
-                .AddScoped<INotificationService, NotificationService>();
-
+            services.AddSmartLibrary();
             services.AddSingleton<NotificationLogger>();
 
             return services;
