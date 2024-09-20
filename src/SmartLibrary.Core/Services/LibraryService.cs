@@ -1,5 +1,6 @@
-﻿using SmartLibrary.Core.Interfaces;
+﻿using SmartLibrary.Core.Data;
 using SmartLibrary.Core.Models;
+using SmartLibrary.Core.Interfaces;
 
 namespace SmartLibrary.Core.Services
 {
@@ -75,14 +76,19 @@ namespace SmartLibrary.Core.Services
             await _bookRepository.DeleteAsync(book);
         }
 
-        public async Task<IEnumerable<Loan>> GetLoansAsync()
+        public async Task<PagedResult<Loan>> GetLoansAsync(int pageNumber, int pageSize)
         {
-            return await _loanRepository.GetAllAsync();
+            return await _loanRepository.GetPagedAsync(pageNumber, pageSize);
         }
 
-        public async Task<IEnumerable<Book>> GetBooksAsync()
+        public async Task<PagedResult<Book>> GetBooksAsync(int pageNumber, int pageSize)
         {
-            return await _bookRepository.GetAllAsync();
+            return await _bookRepository.GetPagedAsync(pageNumber, pageSize);
+        }
+
+        public async Task<PagedResult<Reader>> GetReadersAsync(int pageNumber, int pageSize)
+        {
+            return await _readerRepository.GetPagedAsync(pageNumber, pageSize);
         }
     }
 }

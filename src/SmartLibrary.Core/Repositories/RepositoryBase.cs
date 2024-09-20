@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SmartLibrary.Core.Data;
 using SmartLibrary.Core.Interfaces;
 
 namespace SmartLibrary.Core.Repositories
@@ -38,6 +39,26 @@ namespace SmartLibrary.Core.Repositories
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             return await _dbContext.Set<TEntity>().ToListAsync();
+        }
+
+        public async Task<PagedResult<TEntity>> GetPagedAsync(int pageNumber, int pageSize)
+        {
+            var dbSet = _dbContext.Set<TEntity>();
+            var totalCount = await dbSet.CountAsync();
+            var totalPages = (int)Math.Ceiling(totalCount / (float)pageSize);
+
+            var items = await dbSet
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return new PagedResult<TEntity>
+            {
+                Items = items,
+                PageSize = pageSize,
+                PageNumber = pageNumber,
+                TotalPages = totalPages
+            };
         }
     }
 }

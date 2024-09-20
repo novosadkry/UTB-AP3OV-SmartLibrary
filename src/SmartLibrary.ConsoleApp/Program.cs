@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using SmartLibrary.Core.Data;
 using SmartLibrary.Core.Interfaces;
 using SmartLibrary.Core.Extensions;
@@ -49,17 +48,18 @@ namespace SmartLibrary.ConsoleApp
                 switch (selection)
                 {
                     case "Zobrazit výpůjčky":
-                        await AnsiConsole.Status()
-                            .Spinner(Spinner.Known.Star)
-                            .StartAsync("Načítání...", async _ =>
-                                LoansTable.Render(await libraryService.GetLoansAsync()));
+                        var loansTable = new LoansTableWidget(libraryService);
+                        await loansTable.DrawAsync();
+                        break;
+
+                    case "Zobrazit čtenáře":
+                        var readersTable = new ReadersTableWidget(libraryService);
+                        await readersTable.DrawAsync();
                         break;
 
                     case "[red]Ukončit[/]":
                         return;
                 }
-
-                AnsiConsole.Console.Input.ReadKey(false);
             }
         }
     }

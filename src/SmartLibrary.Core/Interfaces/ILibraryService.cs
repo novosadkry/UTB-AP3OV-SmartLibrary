@@ -1,4 +1,5 @@
-﻿using SmartLibrary.Core.Models;
+﻿using SmartLibrary.Core.Data;
+using SmartLibrary.Core.Models;
 
 namespace SmartLibrary.Core.Interfaces
 {
@@ -11,7 +12,8 @@ namespace SmartLibrary.Core.Interfaces
         Task AddBookAsync(Book book);
         Task UpdateBookAsync(Book book);
         Task DeleteBookAsync(Book book);
-        Task<IEnumerable<Loan>> GetLoansAsync();
-        Task<IEnumerable<Book>> GetBooksAsync();
+        Task<PagedResult<Book>> GetBooksAsync(int pageNumber, int pageSize);
+        Task<PagedResult<Reader>> GetReadersAsync(int pageNumber, int pageSize);
+        Task<PagedResult<Loan>> GetLoansAsync(int pageNumber, int pageSize);
     }
 }
