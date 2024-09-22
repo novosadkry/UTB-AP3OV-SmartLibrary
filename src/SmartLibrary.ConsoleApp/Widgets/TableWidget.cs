@@ -26,10 +26,10 @@ namespace SmartLibrary.ConsoleApp.Widgets
                     case ConsoleKey.Escape:
                         return;
                     case ConsoleKey.LeftArrow:
-                        pageNumber = Math.Clamp(pageNumber - 1, 1, pagedResult.TotalPages);
+                        pageNumber = Math.Clamp(pageNumber - 1, 1, Math.Max(1, pagedResult.TotalPages));
                         break;
                     case ConsoleKey.RightArrow:
-                        pageNumber = Math.Clamp(pageNumber + 1, 1, pagedResult.TotalPages);
+                        pageNumber = Math.Clamp(pageNumber + 1, 1, Math.Max(1, pagedResult.TotalPages));
                         break;
                 }
             }
