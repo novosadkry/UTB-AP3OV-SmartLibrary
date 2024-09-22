@@ -43,7 +43,7 @@ namespace SmartLibrary.ConsoleApp.Widgets
                     .Title("Vyberte uživatele:")
                     .PageSize(20)
                     .EnableSearch()
-                    .UseConverter(reader => reader.FullName)
+                    .UseConverter(reader =>  $"{reader.FullName} ({reader.BirthDate:dd.MM.yyyy})")
                     .SearchPlaceholderText("[grey](Psaním můžete vyhledávat)[/]")
                     .MoreChoicesText("[grey](Posunem nahorů a dolů zobrazíte více možností)[/]")
                     .AddChoices(readers));

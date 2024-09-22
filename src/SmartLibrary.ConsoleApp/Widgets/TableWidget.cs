@@ -43,7 +43,6 @@ namespace SmartLibrary.ConsoleApp.Widgets
                 .Spinner(Spinner.Known.Star)
                 .StartAsync("Načítání...", async _ =>
                 {
-                    await Task.Delay(500);
                     pagedResult = await FetchPageAsync(pageNumber);
                 });
 
