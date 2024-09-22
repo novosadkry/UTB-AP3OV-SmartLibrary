@@ -76,14 +76,29 @@ namespace SmartLibrary.Core.Services
             await _bookRepository.DeleteAsync(book);
         }
 
-        public async Task<PagedResult<Loan>> GetLoansAsync(int pageNumber, int pageSize)
+        public async Task<IEnumerable<Book>> GetBooksAsync()
         {
-            return await _loanRepository.GetPagedAsync(pageNumber, pageSize);
+            return await _bookRepository.GetAllAsync();
         }
 
         public async Task<PagedResult<Book>> GetBooksAsync(int pageNumber, int pageSize)
         {
             return await _bookRepository.GetPagedAsync(pageNumber, pageSize);
+        }
+
+        public async Task<IEnumerable<Loan>> GetLoansAsync()
+        {
+            return await _loanRepository.GetAllAsync();
+        }
+
+        public async Task<PagedResult<Loan>> GetLoansAsync(int pageNumber, int pageSize)
+        {
+            return await _loanRepository.GetPagedAsync(pageNumber, pageSize);
+        }
+
+        public async Task<IEnumerable<Reader>> GetReadersAsync()
+        {
+            return await _readerRepository.GetAllAsync();
         }
 
         public async Task<PagedResult<Reader>> GetReadersAsync(int pageNumber, int pageSize)

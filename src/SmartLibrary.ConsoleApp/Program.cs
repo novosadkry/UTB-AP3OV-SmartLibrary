@@ -43,13 +43,18 @@ namespace SmartLibrary.ConsoleApp
                 var selection = AnsiConsole.Prompt(
                     new SelectionPrompt<string>()
                         .Title("Vyberte možnost:")
-                        .AddChoices("Přidat knihu", "Zobrazit čtenáře", "Zobrazit výpůjčky", "[red]Ukončit[/]"));
+                        .AddChoices("Přidat knihu", "Vytvořit výpůjčku", "Zobrazit čtenáře", "Zobrazit výpůjčky", "[red]Ukončit[/]"));
 
                 switch (selection)
                 {
                     case "Zobrazit výpůjčky":
                         var loansTable = new LoansTableWidget(libraryService);
                         await loansTable.DrawAsync();
+                        break;
+
+                    case "Vytvořit výpůjčku":
+                        var borrowWidget = new BorrowBookWidget(libraryService);
+                        await borrowWidget.DrawAsync();
                         break;
 
                     case "Zobrazit čtenáře":
