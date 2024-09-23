@@ -5,6 +5,7 @@ namespace SmartLibrary.ConsoleApp.Widgets
 {
     public enum MenuOption
     {
+        AddBook,
         CreateLoan,
         ShowReaders,
         ShowLoans,
@@ -15,6 +16,7 @@ namespace SmartLibrary.ConsoleApp.Widgets
     {
         public static string ToDisplayString(this MenuOption option) => option switch
         {
+            MenuOption.AddBook => "Přidat knihu",
             MenuOption.CreateLoan => "Vytvořit výpůjčku",
             MenuOption.ShowReaders => "Zobrazit čtenáře",
             MenuOption.ShowLoans => "Zobrazit výpůjčky",
@@ -25,11 +27,17 @@ namespace SmartLibrary.ConsoleApp.Widgets
 
     public class MenuWidget : IWidget
     {
-        private readonly ILibraryService _libraryService;
+        private readonly Dictionary<MenuOption, Func<IWidget>> _options;
 
         public MenuWidget(ILibraryService libraryService)
         {
-            _libraryService = libraryService;
+            _options = new Dictionary<MenuOption, Func<IWidget>>
+            {
+                { MenuOption.AddBook, () => new AddBookWidget(libraryService) },
+                { MenuOption.ShowLoans, () => new LoansTableWidget(libraryService) },
+                { MenuOption.CreateLoan, () => new BorrowBookWidget(libraryService) },
+                { MenuOption.ShowReaders, () => new ReadersTableWidget(libraryService) }
+            };
         }
 
         public async Task DrawAsync()
@@ -44,26 +52,11 @@ namespace SmartLibrary.ConsoleApp.Widgets
                         .AddChoices(Enum.GetValues<MenuOption>())
                         .UseConverter(option => option.ToDisplayString()));
 
-                switch (selection)
-                {
-                    case MenuOption.ShowLoans:
-                        var loansTable = new LoansTableWidget(_libraryService);
-                        await loansTable.DrawAsync();
-                        break;
+                if (selection == MenuOption.Exit) break;
+                if (!_options.TryGetValue(selection, out var widgetProducer)) continue;
 
-                    case MenuOption.CreateLoan:
-                        var borrowWidget = new BorrowBookWidget(_libraryService);
-                        await borrowWidget.DrawAsync();
-                        break;
-
-                    case MenuOption.ShowReaders:
-                        var readersTable = new ReadersTableWidget(_libraryService);
-                        await readersTable.DrawAsync();
-                        break;
-
-                    case MenuOption.Exit:
-                        return;
-                }
+                var widget = widgetProducer();
+                await widget.DrawAsync();
             }
         }
     }
