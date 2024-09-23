@@ -1,5 +1,6 @@
 ﻿using Bogus;
 using SmartLibrary.Core.Models;
+using SmartLibrary.Core.Extensions;
 
 namespace SmartLibrary.Core.Data
 {
@@ -24,11 +25,7 @@ namespace SmartLibrary.Core.Data
                 .RuleFor(b => b.Genre, f => f.Random.Word())
                 .RuleFor(b => b.Title, f => f.Random.Words())
                 .RuleFor(b => b.Author, f => f.Person.FullName)
-                .RuleFor(b => b.Isbn, f =>
-                {
-                    var digits = string.Join("", f.Random.Digits(13));
-                    return $"{digits[..3]}-{digits[3]}-{digits[4..6]}-{digits[6..12]}-{digits[12]}";
-                });
+                .RuleFor(b => b.Isbn, f => f.Random.Isbn());
 
             var books = Enumerable.Range(1, count)
                 .Select(_ => faker.Generate())
