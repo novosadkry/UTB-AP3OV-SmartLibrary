@@ -8,6 +8,7 @@ namespace SmartLibrary.ConsoleApp.Widgets
     {
         AddBook,
         CreateLoan,
+        ShowBooks,
         ShowReaders,
         ShowLoans,
         Exit
@@ -19,6 +20,7 @@ namespace SmartLibrary.ConsoleApp.Widgets
         {
             MenuOption.AddBook => "Přidat knihu",
             MenuOption.CreateLoan => "Vytvořit výpůjčku",
+            MenuOption.ShowBooks => "Zobrazit knihy",
             MenuOption.ShowReaders => "Zobrazit čtenáře",
             MenuOption.ShowLoans => "Zobrazit výpůjčky",
             MenuOption.Exit => "[red]Ukončit[/]",
@@ -35,9 +37,10 @@ namespace SmartLibrary.ConsoleApp.Widgets
             _options = new Dictionary<MenuOption, Func<Widget>>
             {
                 { MenuOption.AddBook, () => new AddBookWidget(libraryService) },
-                { MenuOption.ShowLoans, () => new LoansTableWidget(libraryService) },
                 { MenuOption.CreateLoan, () => new BorrowBookWidget(libraryService) },
-                { MenuOption.ShowReaders, () => new ReadersTableWidget(libraryService) }
+                { MenuOption.ShowBooks, () => new BooksTableWidget(libraryService) },
+                { MenuOption.ShowReaders, () => new ReadersTableWidget(libraryService) },
+                { MenuOption.ShowLoans, () => new LoansTableWidget(libraryService) }
             };
         }
 
