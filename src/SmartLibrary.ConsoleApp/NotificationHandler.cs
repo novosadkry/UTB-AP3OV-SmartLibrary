@@ -6,16 +6,17 @@ using Spectre.Console;
 
 namespace SmartLibrary.ConsoleApp
 {
-    public sealed class NotificationHandler : IObserver<NotificationEvent>, IDisposable
+    public sealed class NotificationHandler : IDisposable
     {
         private Task? _notificationTask;
         private CancellationTokenSource? _cts;
-        private readonly IDisposable _unsubscriber;
+        private readonly INotificationService _notificationService;
         private readonly ConcurrentQueue<NotificationEvent> _eventQueue;
 
         public NotificationHandler(INotificationService notificationService)
         {
-            _unsubscriber = notificationService.Subscribe(this);
+            _notificationService = notificationService;
+            _notificationService.NotifyEvent += OnNotifyEvent;
             _eventQueue = new ConcurrentQueue<NotificationEvent>();
         }
 
@@ -32,13 +33,9 @@ namespace SmartLibrary.ConsoleApp
             _notificationTask = Task.Run(() => NotificationThread(_cts.Token));
         }
 
-        public void OnCompleted() { }
-
-        public void OnError(Exception error) { }
-
-        public void OnNext(NotificationEvent value)
+        private void OnNotifyEvent(object? sender, NotificationEvent e)
         {
-            _eventQueue.Enqueue(value);
+            _eventQueue.Enqueue(e);
         }
 
         private async Task NotificationThread(CancellationToken cancellationToken)
@@ -76,8 +73,8 @@ namespace SmartLibrary.ConsoleApp
         public void Dispose()
         {
             _cts?.Dispose();
-            _unsubscriber.Dispose();
             _notificationTask?.Dispose();
+            _notificationService.NotifyEvent -= OnNotifyEvent;
         }
     }
 }
