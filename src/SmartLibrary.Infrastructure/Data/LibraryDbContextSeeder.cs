@@ -22,10 +22,11 @@ namespace SmartLibrary.Infrastructure.Data
             var fakerIndex = 1;
             var faker = new Faker<Book>("cz")
                 .RuleFor(b => b.Id, _ => fakerIndex++)
-                .RuleFor(b => b.Genre, f => f.Random.Word())
+                .RuleFor(b => b.Isbn, f => f.Random.Isbn())
                 .RuleFor(b => b.Title, f => f.Random.Words())
+                .RuleFor(b => b.Genre, f => f.Random.Word())
                 .RuleFor(b => b.Author, f => f.Person.FullName)
-                .RuleFor(b => b.Isbn, f => f.Random.Isbn());
+                .RuleFor(b => b.Year, f => f.Date.Past(50).Year);
 
             var books = Enumerable.Range(1, count)
                 .Select(_ => faker.Generate())
