@@ -23,7 +23,7 @@ namespace SmartLibrary.Core.Extensions
                 .AddScoped<IReaderRepository, ReaderRepository>()
                 .AddScoped<ILoanRepository, LoanRepository>()
                 .AddScoped<ILibraryService, LibraryService>()
-                .AddScoped<INotificationService, NotificationService>();
+                .AddSingleton<INotificationService, NotificationService>();
 
             return services;
         }

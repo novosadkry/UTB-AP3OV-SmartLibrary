@@ -7,7 +7,6 @@ namespace SmartLibrary.Core.Services
 {
     public class NotificationService : INotificationService, IDisposable
     {
-        private bool _disposed;
         private readonly Subject<NotificationEvent> _subject = new();
 
         public Task NotifyNewBookAddedAsync(Book book)
@@ -35,25 +34,16 @@ namespace SmartLibrary.Core.Services
 
         protected virtual void Dispose(bool disposing)
         {
-            if (_disposed) return;
-
             if (disposing)
             {
                 _subject.Dispose();
             }
-
-            _disposed = true;
         }
 
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
-        }
-
-        ~NotificationService()
-        {
-            Dispose(false);
         }
     }
 }

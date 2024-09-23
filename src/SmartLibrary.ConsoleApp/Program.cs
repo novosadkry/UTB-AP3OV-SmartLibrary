@@ -21,7 +21,7 @@ namespace SmartLibrary.ConsoleApp
             IServiceCollection services = new ServiceCollection();
 
             services.AddSmartLibrary();
-            services.AddSingleton<NotificationLogger>();
+            services.AddSingleton<NotificationHandler>();
 
             return services;
         }
@@ -29,11 +29,15 @@ namespace SmartLibrary.ConsoleApp
         private static async Task RunAsync(IServiceProvider serviceProvider)
         {
             using var scope = serviceProvider.CreateScope();
+
             var dbContext = scope.ServiceProvider.GetRequiredService<LibraryDbContext>();
             var libraryService = scope.ServiceProvider.GetRequiredService<ILibraryService>();
+            var notificationHandler = scope.ServiceProvider.GetRequiredService<NotificationHandler>();
 
             await dbContext.Database.EnsureDeletedAsync();
             await dbContext.Database.EnsureCreatedAsync();
+
+            await notificationHandler.StartAsync();
 
             var menuWidget = new MenuWidget(libraryService);
             await menuWidget.DrawAsync();
