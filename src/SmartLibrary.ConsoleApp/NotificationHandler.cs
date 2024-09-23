@@ -49,13 +49,21 @@ namespace SmartLibrary.ConsoleApp
                     switch (value)
                     {
                         case NewBookAddedEvent newBookEvent:
-                            AnsiConsole.WriteLine($"Přidána nová kniha: {newBookEvent.Book.Title}");
+                            AnsiConsole.Write(
+                                new Panel($"Přidána nová kniha: {newBookEvent.Book.Title}")
+                                    .Header("Nová notifikace"));
                             break;
+
                         case BookBorrowedEvent borrowedEvent:
-                            AnsiConsole.WriteLine($"{borrowedEvent.Reader.FullName} si půjčil/a knihu {borrowedEvent.Book.Title}");
+                            AnsiConsole.Write(
+                                new Panel($"{borrowedEvent.Reader.FullName} si půjčil/a knihu {borrowedEvent.Book.Title}")
+                                    .Header("Nová notifikace"));
                             break;
+
                         case OverdueBookReturnedEvent overdueEvent:
-                            AnsiConsole.WriteLine($"{overdueEvent.Loan.Reader.FullName} vrátil/a se zpožděním knihu {overdueEvent.Loan.Book.Title}");
+                            AnsiConsole.Write(
+                                new Panel($"{overdueEvent.Loan.Reader.FullName} vrátil/a se zpožděním knihu {overdueEvent.Loan.Book.Title}")
+                                    .Header("Nová notifikace"));
                             break;
                     }
                 }
