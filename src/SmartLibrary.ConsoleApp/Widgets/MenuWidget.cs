@@ -7,7 +7,8 @@ namespace SmartLibrary.ConsoleApp.Widgets
     public enum MenuOption
     {
         AddBook,
-        CreateLoan,
+        BorrowBook,
+        ReturnBook,
         ShowBooks,
         ShowReaders,
         ShowLoans,
@@ -19,7 +20,8 @@ namespace SmartLibrary.ConsoleApp.Widgets
         public static string ToDisplayString(this MenuOption option) => option switch
         {
             MenuOption.AddBook => "Přidat knihu",
-            MenuOption.CreateLoan => "Vytvořit výpůjčku",
+            MenuOption.BorrowBook => "Vypůjčit knihu",
+            MenuOption.ReturnBook => "Vrátit knihu",
             MenuOption.ShowBooks => "Zobrazit knihy",
             MenuOption.ShowReaders => "Zobrazit čtenáře",
             MenuOption.ShowLoans => "Zobrazit výpůjčky",
@@ -37,7 +39,8 @@ namespace SmartLibrary.ConsoleApp.Widgets
             _options = new Dictionary<MenuOption, Func<Widget>>
             {
                 { MenuOption.AddBook, () => new AddBookWidget(libraryService) },
-                { MenuOption.CreateLoan, () => new BorrowBookWidget(libraryService) },
+                { MenuOption.BorrowBook, () => new BorrowBookWidget(libraryService) },
+                { MenuOption.ReturnBook, () => new ReturnBookWidget(libraryService) },
                 { MenuOption.ShowBooks, () => new BooksTableWidget(libraryService) },
                 { MenuOption.ShowReaders, () => new ReadersTableWidget(libraryService) },
                 { MenuOption.ShowLoans, () => new LoansTableWidget(libraryService) }

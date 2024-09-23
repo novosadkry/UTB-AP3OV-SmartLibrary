@@ -18,5 +18,6 @@ namespace SmartLibrary.Domain.Services
         Task<PagedResult<Reader>> GetReadersAsync(int pageNumber, int pageSize);
         Task<IEnumerable<Loan>> GetLoansAsync();
         Task<PagedResult<Loan>> GetLoansAsync(int pageNumber, int pageSize);
+        Task<IEnumerable<Loan>> GetActiveLoansAsync();
     }
 }

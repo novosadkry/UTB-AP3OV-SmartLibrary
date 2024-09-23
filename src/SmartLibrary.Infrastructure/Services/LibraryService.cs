@@ -91,6 +91,11 @@ namespace SmartLibrary.Infrastructure.Services
             return await _loanRepository.GetAllAsync();
         }
 
+        public async Task<IEnumerable<Loan>> GetActiveLoansAsync()
+        {
+            return await _loanRepository.GetActiveLoansAsync();
+        }
+
         public async Task<PagedResult<Loan>> GetLoansAsync(int pageNumber, int pageSize)
         {
             return await _loanRepository.GetPagedAsync(pageNumber, pageSize);

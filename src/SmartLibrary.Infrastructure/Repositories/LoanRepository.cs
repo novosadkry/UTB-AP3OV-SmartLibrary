@@ -15,6 +15,13 @@ namespace SmartLibrary.Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
+        public async Task<IEnumerable<Loan>> GetActiveLoansAsync()
+        {
+            return await _dbContext.Loans
+                .Where(loan => loan.ReturnDate == null)
+                .ToListAsync();
+        }
+
         public async Task<IEnumerable<Loan>> GetOverdueLoansAsync()
         {
             return await _dbContext.Loans
