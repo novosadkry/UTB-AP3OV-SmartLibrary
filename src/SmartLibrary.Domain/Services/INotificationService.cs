@@ -1,7 +1,7 @@
-﻿using SmartLibrary.Core.Events;
-using SmartLibrary.Core.Models;
+﻿using SmartLibrary.Domain.Events;
+using SmartLibrary.Domain.Models;
 
-namespace SmartLibrary.Core.Interfaces
+namespace SmartLibrary.Domain.Services
 {
     public interface INotificationService : IObservable<NotificationEvent>
     {

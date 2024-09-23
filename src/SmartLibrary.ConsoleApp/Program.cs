@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using SmartLibrary.Core.Data;
-using SmartLibrary.Core.Interfaces;
-using SmartLibrary.Core.Extensions;
+using SmartLibrary.Domain.Services;
+using SmartLibrary.Infrastructure.Data;
+using SmartLibrary.Infrastructure.Extensions;
 using SmartLibrary.ConsoleApp.Widgets;
 
 namespace SmartLibrary.ConsoleApp

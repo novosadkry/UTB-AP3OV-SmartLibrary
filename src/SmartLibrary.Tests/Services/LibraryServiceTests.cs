@@ -1,6 +1,7 @@
-﻿using SmartLibrary.Core.Interfaces;
-using SmartLibrary.Core.Models;
-using SmartLibrary.Core.Services;
+﻿using SmartLibrary.Domain.Models;
+using SmartLibrary.Domain.Services;
+using SmartLibrary.Domain.Repositories;
+using SmartLibrary.Infrastructure.Services;
 
 namespace SmartLibrary.Tests.Services
 {

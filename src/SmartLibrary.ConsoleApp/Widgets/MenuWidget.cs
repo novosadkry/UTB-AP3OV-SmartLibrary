@@ -1,4 +1,4 @@
-﻿using SmartLibrary.Core.Interfaces;
+﻿using SmartLibrary.Domain.Services;
 using SmartLibrary.ConsoleApp.Widgets.Tables;
 using Spectre.Console;
 

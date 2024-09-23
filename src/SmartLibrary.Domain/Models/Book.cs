@@ -1,4 +1,4 @@
-﻿namespace SmartLibrary.Core.Models
+﻿namespace SmartLibrary.Domain.Models
 {
     public class Book
     {

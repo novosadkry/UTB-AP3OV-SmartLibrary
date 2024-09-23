@@ -1,6 +1,6 @@
 ﻿using System.Collections.Concurrent;
-using SmartLibrary.Core.Events;
-using SmartLibrary.Core.Interfaces;
+using SmartLibrary.Domain.Events;
+using SmartLibrary.Domain.Services;
 using Spectre.Console;
 
 namespace SmartLibrary.ConsoleApp

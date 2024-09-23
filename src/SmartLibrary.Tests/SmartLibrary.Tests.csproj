@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SmartLibrary.Core\SmartLibrary.Core.csproj" />
+    <ProjectReference Include="..\SmartLibrary.Infrastructure\SmartLibrary.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

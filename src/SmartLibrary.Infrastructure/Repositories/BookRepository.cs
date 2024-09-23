@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SmartLibrary.Core.Data;
-using SmartLibrary.Core.Models;
-using SmartLibrary.Core.Interfaces;
+using SmartLibrary.Domain.Models;
+using SmartLibrary.Domain.Repositories;
+using SmartLibrary.Infrastructure.Data;
 
-namespace SmartLibrary.Core.Repositories
+namespace SmartLibrary.Infrastructure.Repositories
 {
     public class BookRepository : RepositoryBase<Book>, IBookRepository
     {

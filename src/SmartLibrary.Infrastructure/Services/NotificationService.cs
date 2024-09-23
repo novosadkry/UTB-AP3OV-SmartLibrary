@@ -1,9 +1,9 @@
 ﻿using System.Reactive.Subjects;
-using SmartLibrary.Core.Events;
-using SmartLibrary.Core.Interfaces;
-using SmartLibrary.Core.Models;
+using SmartLibrary.Domain.Events;
+using SmartLibrary.Domain.Models;
+using SmartLibrary.Domain.Services;
 
-namespace SmartLibrary.Core.Services
+namespace SmartLibrary.Infrastructure.Services
 {
     public class NotificationService : INotificationService, IDisposable
     {

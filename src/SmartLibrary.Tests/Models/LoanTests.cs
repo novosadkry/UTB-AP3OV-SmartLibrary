@@ -1,4 +1,4 @@
-﻿using SmartLibrary.Core.Models;
+﻿using SmartLibrary.Domain.Models;
 
 namespace SmartLibrary.Tests.Models
 {

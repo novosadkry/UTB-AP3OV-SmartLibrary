@@ -1,6 +1,6 @@
 ﻿using Bogus;
 
-namespace SmartLibrary.Core.Extensions
+namespace SmartLibrary.Infrastructure.Extensions
 {
     public static class BogusExtensions
     {

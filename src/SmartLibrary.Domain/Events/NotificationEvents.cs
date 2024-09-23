@@ -1,6 +1,6 @@
-﻿using SmartLibrary.Core.Models;
+﻿using SmartLibrary.Domain.Models;
 
-namespace SmartLibrary.Core.Events
+namespace SmartLibrary.Domain.Events
 {
     public abstract record NotificationEvent;
     public record NewBookAddedEvent(Book Book) : NotificationEvent;

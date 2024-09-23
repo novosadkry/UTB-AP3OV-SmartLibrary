@@ -1,8 +1,8 @@
 ﻿using Bogus;
-using SmartLibrary.Core.Models;
-using SmartLibrary.Core.Extensions;
+using SmartLibrary.Domain.Models;
+using SmartLibrary.Infrastructure.Extensions;
 
-namespace SmartLibrary.Core.Data
+namespace SmartLibrary.Infrastructure.Data
 {
     public class LibraryDbContextSeeder
     {

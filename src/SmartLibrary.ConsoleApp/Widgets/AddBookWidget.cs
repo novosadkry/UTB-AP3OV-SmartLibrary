@@ -1,7 +1,7 @@
 ﻿using Bogus;
-using SmartLibrary.Core.Models;
-using SmartLibrary.Core.Interfaces;
-using SmartLibrary.Core.Extensions;
+using SmartLibrary.Domain.Models;
+using SmartLibrary.Domain.Services;
+using SmartLibrary.Infrastructure.Extensions;
 using Spectre.Console;
 
 namespace SmartLibrary.ConsoleApp.Widgets

@@ -1,5 +1,5 @@
-﻿using SmartLibrary.Core.Interfaces;
-using SmartLibrary.Core.Models;
+﻿using SmartLibrary.Domain.Models;
+using SmartLibrary.Domain.Services;
 using Spectre.Console;
 
 namespace SmartLibrary.ConsoleApp.Widgets

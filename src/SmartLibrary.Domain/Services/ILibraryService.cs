@@ -1,7 +1,7 @@
-﻿using SmartLibrary.Core.Data;
-using SmartLibrary.Core.Models;
+﻿using SmartLibrary.Domain.Models;
+using SmartLibrary.Domain.Repositories;
 
-namespace SmartLibrary.Core.Interfaces
+namespace SmartLibrary.Domain.Services
 {
     public interface ILibraryService
     {

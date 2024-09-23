@@ -1,6 +1,6 @@
-﻿using SmartLibrary.Core.Data;
-using SmartLibrary.Core.Models;
-using SmartLibrary.Core.Interfaces;
+﻿using SmartLibrary.Domain.Models;
+using SmartLibrary.Domain.Services;
+using SmartLibrary.Domain.Repositories;
 using Spectre.Console;
 
 namespace SmartLibrary.ConsoleApp.Widgets.Tables

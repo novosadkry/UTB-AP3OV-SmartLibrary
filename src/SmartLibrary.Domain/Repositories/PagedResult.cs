@@ -1,4 +1,4 @@
-﻿namespace SmartLibrary.Core.Data
+﻿namespace SmartLibrary.Domain.Repositories
 {
     public class PagedResult<T>
     {

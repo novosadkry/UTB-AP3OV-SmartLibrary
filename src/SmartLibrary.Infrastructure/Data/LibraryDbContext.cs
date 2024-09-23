@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SmartLibrary.Core.Models;
+using SmartLibrary.Domain.Models;
 
-namespace SmartLibrary.Core.Data
+namespace SmartLibrary.Infrastructure.Data
 {
     public class LibraryDbContext(DbContextOptions<LibraryDbContext> options) : DbContext(options)
     {

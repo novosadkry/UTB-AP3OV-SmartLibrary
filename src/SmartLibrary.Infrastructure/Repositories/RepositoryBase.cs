@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SmartLibrary.Core.Data;
-using SmartLibrary.Core.Interfaces;
+using SmartLibrary.Domain.Repositories;
 
-namespace SmartLibrary.Core.Repositories
+namespace SmartLibrary.Infrastructure.Repositories
 {
     public class RepositoryBase<TEntity> : IRepositoryBase<TEntity>
         where TEntity : class

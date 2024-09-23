@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using SmartLibrary.Core.Data;
-using SmartLibrary.Core.Services;
-using SmartLibrary.Core.Interfaces;
-using SmartLibrary.Core.Repositories;
+using SmartLibrary.Domain.Services;
+using SmartLibrary.Domain.Repositories;
+using SmartLibrary.Infrastructure.Data;
+using SmartLibrary.Infrastructure.Services;
+using SmartLibrary.Infrastructure.Repositories;
 
-namespace SmartLibrary.Core.Extensions
+namespace SmartLibrary.Infrastructure.Extensions
 {
     public static class ServiceCollectionExtensions
     {

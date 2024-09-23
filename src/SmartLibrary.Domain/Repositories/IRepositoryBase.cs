@@ -1,6 +1,4 @@
-﻿using SmartLibrary.Core.Data;
-
-namespace SmartLibrary.Core.Interfaces
+﻿namespace SmartLibrary.Domain.Repositories
 {
     public interface IRepositoryBase<TEntity>
         where TEntity : class

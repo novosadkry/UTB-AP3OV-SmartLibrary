@@ -1,6 +1,6 @@
-﻿using SmartLibrary.Core.Models;
+﻿using SmartLibrary.Domain.Models;
 
-namespace SmartLibrary.Core.Interfaces
+namespace SmartLibrary.Domain.Repositories
 {
     public interface IBookRepository : IRepositoryBase<Book>
     {

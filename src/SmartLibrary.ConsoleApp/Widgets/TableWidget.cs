@@ -1,4 +1,4 @@
-﻿using SmartLibrary.Core.Data;
+﻿using SmartLibrary.Domain.Repositories;
 using Spectre.Console;
 
 namespace SmartLibrary.ConsoleApp.Widgets
