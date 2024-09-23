@@ -1,4 +1,5 @@
 ﻿using SmartLibrary.Core.Interfaces;
+using SmartLibrary.ConsoleApp.Widgets.Tables;
 using Spectre.Console;
 
 namespace SmartLibrary.ConsoleApp.Widgets

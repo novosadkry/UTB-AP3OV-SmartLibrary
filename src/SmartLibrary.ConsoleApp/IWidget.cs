@@ -1,4 +1,4 @@
-﻿namespace SmartLibrary.ConsoleApp.Widgets
+﻿namespace SmartLibrary.ConsoleApp
 {
     public interface IWidget
     {

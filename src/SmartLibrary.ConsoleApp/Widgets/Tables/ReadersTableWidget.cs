@@ -3,7 +3,7 @@ using SmartLibrary.Core.Models;
 using SmartLibrary.Core.Interfaces;
 using Spectre.Console;
 
-namespace SmartLibrary.ConsoleApp.Widgets
+namespace SmartLibrary.ConsoleApp.Widgets.Tables
 {
     public class ReadersTableWidget : TableWidget<Reader>
     {
