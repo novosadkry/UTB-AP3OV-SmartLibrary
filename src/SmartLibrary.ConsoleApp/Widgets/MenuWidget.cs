@@ -26,13 +26,13 @@ namespace SmartLibrary.ConsoleApp.Widgets
         };
     }
 
-    public class MenuWidget : IWidget
+    public class MenuWidget : Widget
     {
-        private readonly Dictionary<MenuOption, Func<IWidget>> _options;
+        private readonly Dictionary<MenuOption, Func<Widget>> _options;
 
         public MenuWidget(ILibraryService libraryService)
         {
-            _options = new Dictionary<MenuOption, Func<IWidget>>
+            _options = new Dictionary<MenuOption, Func<Widget>>
             {
                 { MenuOption.AddBook, () => new AddBookWidget(libraryService) },
                 { MenuOption.ShowLoans, () => new LoansTableWidget(libraryService) },
@@ -41,24 +41,30 @@ namespace SmartLibrary.ConsoleApp.Widgets
             };
         }
 
-        public async Task DrawAsync()
+        public override Task DrawAsync()
         {
-            while (true)
+            AnsiConsole.Clear();
+
+            var selection = AnsiConsole.Prompt(
+                new SelectionPrompt<MenuOption>()
+                    .Title("Vyberte možnost:")
+                    .AddChoices(Enum.GetValues<MenuOption>())
+                    .UseConverter(option => option.ToDisplayString()));
+
+            if (selection == MenuOption.Exit)
             {
-                AnsiConsole.Clear();
-
-                var selection = AnsiConsole.Prompt(
-                    new SelectionPrompt<MenuOption>()
-                        .Title("Vyberte možnost:")
-                        .AddChoices(Enum.GetValues<MenuOption>())
-                        .UseConverter(option => option.ToDisplayString()));
-
-                if (selection == MenuOption.Exit) break;
-                if (!_options.TryGetValue(selection, out var widgetProducer)) continue;
-
-                var widget = widgetProducer();
-                await widget.DrawAsync();
+                SetSuccessor(null);
+                return Task.CompletedTask;
             }
+
+            if (!_options.TryGetValue(selection, out var widgetProducer))
+            {
+                SetSuccessor(this);
+                return Task.CompletedTask;
+            }
+
+            SetSuccessor(widgetProducer().SetSuccessor(this));
+            return Task.CompletedTask;
         }
     }
 }

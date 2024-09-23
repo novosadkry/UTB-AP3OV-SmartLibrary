@@ -3,12 +3,12 @@ using Spectre.Console;
 
 namespace SmartLibrary.ConsoleApp.Widgets
 {
-    public abstract class TableWidget<T> : IWidget
+    public abstract class TableWidget<T> : Widget
     {
         protected abstract Task DrawTableAsync(PagedResult<T> pagedResult);
         protected abstract Task<PagedResult<T>> FetchPageAsync(int pageNumber);
 
-        public async Task DrawAsync()
+        public override async Task DrawAsync()
         {
             int pageNumber = 1;
 

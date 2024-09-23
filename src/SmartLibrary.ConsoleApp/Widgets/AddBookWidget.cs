@@ -6,7 +6,7 @@ using Spectre.Console;
 
 namespace SmartLibrary.ConsoleApp.Widgets
 {
-    public class AddBookWidget : IWidget
+    public class AddBookWidget : Widget
     {
         private readonly ILibraryService _libraryService;
 
@@ -15,7 +15,7 @@ namespace SmartLibrary.ConsoleApp.Widgets
             _libraryService = libraryService;
         }
 
-        public async Task DrawAsync()
+        public override async Task DrawAsync()
         {
             AnsiConsole.Clear();
 

@@ -4,7 +4,7 @@ using Spectre.Console;
 
 namespace SmartLibrary.ConsoleApp.Widgets
 {
-    public class BorrowBookWidget : IWidget
+    public class BorrowBookWidget : Widget
     {
         private readonly ILibraryService _libraryService;
 
@@ -13,7 +13,7 @@ namespace SmartLibrary.ConsoleApp.Widgets
             _libraryService = libraryService;
         }
 
-        public async Task DrawAsync()
+        public override async Task DrawAsync()
         {
             AnsiConsole.Clear();
 

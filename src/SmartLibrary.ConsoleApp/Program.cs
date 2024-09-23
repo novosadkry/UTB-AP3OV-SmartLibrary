@@ -8,6 +8,8 @@ namespace SmartLibrary.ConsoleApp
 {
     public static class Program
     {
+        public static Widget? ActiveWidget { get; private set; }
+
         public static async Task Main(string[] args)
         {
             var services = ConfigureServices();
@@ -39,8 +41,13 @@ namespace SmartLibrary.ConsoleApp
 
             await notificationHandler.StartAsync();
 
-            var menuWidget = new MenuWidget(libraryService);
-            await menuWidget.DrawAsync();
+            ActiveWidget = new MenuWidget(libraryService);
+
+            while (ActiveWidget is not null)
+            {
+                await ActiveWidget.DrawAsync();
+                ActiveWidget = ActiveWidget.Successor;
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using SmartLibrary.ConsoleApp.Widgets;
 using SmartLibrary.Domain.Events;
 using SmartLibrary.Domain.Services;
 using Spectre.Console;
@@ -44,7 +45,7 @@ namespace SmartLibrary.ConsoleApp
         {
             while (!cancellationToken.IsCancellationRequested)
             {
-                if (_eventQueue.TryDequeue(out var value))
+                while (Program.ActiveWidget is MenuWidget && _eventQueue.TryDequeue(out var value))
                 {
                     switch (value)
                     {
