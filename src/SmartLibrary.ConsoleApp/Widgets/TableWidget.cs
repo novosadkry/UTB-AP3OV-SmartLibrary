@@ -15,8 +15,9 @@ namespace SmartLibrary.ConsoleApp.Widgets
             while (true)
             {
                 var pagedResult = await FetchDataWithSpinnerAsync(pageNumber);
-
                 await DrawTableAsync(pagedResult);
+
+                AnsiConsole.Markup("[gray](ESC pro návrat do menu)[/]");
 
                 var keyInfo = AnsiConsole.Console.Input.ReadKey(false);
                 if (keyInfo is null) return;
